@@ -18,7 +18,6 @@ Diseñado para ser **simple**, **modular**, fácil de contenerizar en **Docker**
 ### **GET /check_llm**
 Prueba simple para verificar la conexión con el modelo LLM.
 
-### **POST /rag**
 
 Ejemplo de petición:
 
@@ -37,6 +36,85 @@ Ejemplo de respuesta:
   "raw": {...}
 }
 ```
+
+
+## 🔹 **POST /rag**
+
+### **Descripción**
+Endpoint principal usado por el **frontend**.  
+Procesa la consulta del usuario, obtiene los datos del microservicio de personas y devuelve **solo la lista mapeada**, lista para ser consumida por React.
+
+### **Body esperado**
+```json
+{
+  "consulta": "texto de la consulta"
+}
+```
+
+### **Respuesta**
+Lista de personas mapeadas:
+
+```json
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "edad": 30
+  }
+]
+```
+
+Si no hay personas:
+
+```json
+[]
+```
+
+### **Errores**
+- `500` error interno si falla el RAG o el microservicio.
+
+---
+
+## 🔹 **POST /rag_full**
+
+### **Descripción**
+Endpoint completo de depuración (**solo para pruebas**).  
+Devuelve:
+
+- Personas obtenidas  
+- Respuesta final del LLM  
+- Respuesta cruda del proveedor (HuggingFace Router)
+
+Sirve para verificar que el modelo está respondiendo correctamente, que el pipeline está funcionando y que la integración con HuggingFace Router es correcta.
+
+### **Body esperado**
+```json
+{
+  "consulta": "texto de la consulta"
+}
+```
+
+### **Respuesta**
+```json
+{
+  "personas": [
+    { "id": 1, "nombre": "Juan Pérez" }
+  ],
+  "answer": "La respuesta procesada del modelo",
+  "raw": { ... respuesta original del modelo ... }
+}
+```
+
+### **Errores**
+- `500` si algún componente del pipeline falla.
+
+---
+
+## 📝 Notas adicionales
+
+- `/rag` debe ser usado por el frontend en producción.
+- `/rag_full` es solo para desarrolladores (debug).
+- Ambos endpoints esperan el mismo modelo `QueryBody`.
 
 ---
 
