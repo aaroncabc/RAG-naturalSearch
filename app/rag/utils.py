@@ -1,5 +1,21 @@
 import logging
 import json
+import re
+
+def extract_final_answer(text: str) -> str:
+    """
+    Elimina contenido <think>...</think> y devuelve solo la respuesta final.
+    Funciona para DeepSeek-R1 y modelos similares.
+    """
+    if not text:
+        return text
+
+    # Eliminar bloques <think> ... </think>
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+
+    # Si sigue quedando algo antes de la respuesta final, limpiar
+    return text.strip()
+
 
 logger = logging.getLogger("rag-service")
 

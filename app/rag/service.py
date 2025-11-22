@@ -2,7 +2,7 @@ from typing import Dict, Any, List
 from app.rag.persons_client import fetch_persons
 from app.rag.mapper import map_person_from_api
 from app.rag.context_builder import build_context_from_persons
-from app.rag.llm_client import call_gemini
+from app.rag.llm_client import call_huggingface
 from app.rag.config import MAX_CONTEXT_PERSONS
 from app.rag.utils import logger
 
@@ -28,7 +28,8 @@ async def rag_process(consulta: str) -> List[Dict[str, Any]]:
     context = build_context_from_persons(mapped[:MAX_CONTEXT_PERSONS])
 
     # 4. Llamar al LLM (no afecta la respuesta enviada al frontend)
-    await call_gemini(consulta, context)
+    await call_huggingface(consulta, context)
+
 
     # 5. Devolver SOLO la lista mapeada (frontend usa personas)
     return mapped
