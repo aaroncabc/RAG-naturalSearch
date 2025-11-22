@@ -149,18 +149,10 @@ Esto levantará el servicio en:
 # 🧩 **Formato del archivo `.env`**
 
 ```
-# URL del microservicio de personas (opcional)
-PERSONS_API_URL=http://localhost:3001/persons
-
-# Router de HuggingFace (API unificada)
+PERSONS_SERVICE_URL=http://host.docker.internal:3002/persons
 GEMINI_API_URL=https://router.huggingface.co/v1/chat/completions
-GEMINI_API_KEY=tu_token_de_huggingface
-
-# Modelo a usar
-GEMINI_MODEL=google/gemma-2-27b-it
-
-# Timeout en segundos
-GEMINI_TIMEOUT=30
+GEMINI_API_KEY=hf_XXXXXXXXXXXXXXXXXXXXXXXXXXX
+GEMINI_MODEL=openai/gpt-oss-20b:groq
 ```
 
 ---
