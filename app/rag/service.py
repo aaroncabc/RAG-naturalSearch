@@ -1,10 +1,10 @@
 from typing import Dict, Any, List
-from rag.persons_client import fetch_persons
-from rag.mapper import map_person_from_api
-from rag.context_builder import build_context_from_persons
-from rag.llm_client import call_gemini
-from rag.config import MAX_CONTEXT_PERSONS
-from rag.utils import logger
+from app.rag.persons_client import fetch_persons
+from app.rag.mapper import map_person_from_api
+from app.rag.context_builder import build_context_from_persons
+from app.rag.llm_client import call_gemini
+from app.rag.config import MAX_CONTEXT_PERSONS
+from app.rag.utils import logger
 
 
 async def rag_process(consulta: str) -> List[Dict[str, Any]]:

@@ -1,7 +1,7 @@
 import httpx
 from typing import List, Dict, Any
-from rag.config import PERSONS_SERVICE_URL, PERSONS_TIMEOUT
-from rag.utils import logger
+from app.rag.config import PERSONS_SERVICE_URL, PERSONS_TIMEOUT
+from app.rag.utils import logger
 
 
 async def fetch_persons() -> List[Dict[str, Any]]:

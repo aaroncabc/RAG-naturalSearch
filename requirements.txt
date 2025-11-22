@@ -3,7 +3,3 @@ uvicorn[standard]>=0.20
 httpx>=0.24
 pydantic>=1.10
 python-dotenv>=1.0
-# librerías opcionales para embeddings / si vas a usar sentence-transformers:
-sentence-transformers>=2.2.2
-transformers>=4.35
-torch>=2.0.0

@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from rag.utils import normalize_string
+from app.rag.utils import normalize_string
 
 
 def map_person_from_api(p: Dict[str, Any]) -> Dict[str, Any]:
